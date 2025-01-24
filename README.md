@@ -1,18 +1,23 @@
 ## Step 1: Set up and Configure your Workflow
 
 Please do the following: 
-* Install the latest version of Visual Studio Code (referred as **vscode** for short)
-* Install the latest version of Git Bash (for Windows users)
 * Set up a GitHub account
+* Install the latest version of Visual Studio Code (referred as **vscode** for short)
 
-Set Git Bash as the default terminal
-* Open vscode
-* Press Ctrl + ` (backtick is the key to the left of keyboard 1).
-    * This will open up a terminal at the bottom of the screen.
-    * For Windows users, you may see Command Prompt. For Mac, the default terminal is zsh. To know more, click on the + sign on the far right of the terminal.
-* For Windows users, we will set the default terminal to be Git Bash.
+Do the following only if you want to use command line.
+
+* For Windows users only: Install the latest version of Git Bash. Then set Git Bash as the default terminal
+    * Open vscode
+    * Press Ctrl + ` (backtick is the key to the left of keyboard 1) to open a terminal.
     * Click on the down arrow next to + then choose Select Default Profile. You will see a dropdown at the top of the screen. Select Git Bash.
     * Close vscode and reopen it. Git Bash is now your default terminal. You can check this by clicking on the down arrow next to +. You should see Git Bash (Default)
+* For Mac users only:
+    * Open vscode
+    * Press Ctrl (not Command) + ` (backtick is the key to the left of keyboard 1) to open a terminal.
+    * Install Homebrew, which is a package manager for Mac. Copy/paste this into the terminal `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+    * Install git via the command, `brew install git`
+    * Check if git has been installed via the command, `git --version`
+    * Install Oh My Zsh via the command, `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
 ## Step 2: Clone This Project
 
@@ -31,9 +36,12 @@ git clone <https://github.com/huyptruong/tableau-vcs-example >
 ## Step 3: Open the Project
 
 * In the git bash terminal, type ```code tableau-vcs-example --reuse-window``` to open this project in vscode.
+    * If it doesn't work, Open the Command Palette (Cmd + Shift + P)
+    * Type and select Shell Command: Install 'code' command in PATH.
+    * This should set up the code command in your system’s PATH.
 * Press Ctrl + W to close the Welcome window.
 * In the terminal, type ```cd tableau-vcs-example```
-* At this point, you're in the directory of this project:
+* At this point, you're in the directory of this project
     * To the left is the EXPLORER dock that shows your project along with files in that it currently has.
     * In the middle is the coding area. Files you open will most likely show up here.
 
