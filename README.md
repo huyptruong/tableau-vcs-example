@@ -1,4 +1,5 @@
 ## Step 1: Set up and Configure your Workflowa
+## Step 1: Set up and Configure your Workflows
 
 Please do the following: 
 * Set up a GitHub account
