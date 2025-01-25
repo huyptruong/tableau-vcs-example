@@ -83,7 +83,7 @@ Now, open the Tableau workbook with the following command, `start executive_dash
 
 We're ready to make our first commit!
 * Save the workbook
-* Export it as a twbx
+* Export it as a twbx. <strong style="color:red;">This step is important for version control.</strong>
 * Close the workbook
 * In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
 * To view it, type ```code executive_dashboard.txt```.
@@ -96,47 +96,30 @@ git commit -m "KPI sheet initial build"
 git switch main
 git merge kpi # an input window might appear, but you can just close it
 ```
-        
-Let's build the first visualization, KPI, and see how the changes are reflected on the XML file. For this exercise, we will stop at 
 
+## Exercise 2: Enhance the KPI Viz
 
-The dataset *Sample - Superstore.xls* along with a starter Tableau workbook *executive_dashboard.twb" has been provided. Let's use **git_tab.sh** to view the XML structure behind the workbook.
-* Start Tableau, connect to the data source, and drag the table *Orders* into the canvas
-* Save the workbook.
-* Also save it as a twbx in the same location. <strong style="color:red;">This step is important for version control.</strong>
-* Close the workbook.
-* In the terminal, type ```git_tab.sh executive_dashboard.twbx```. The twbx workbook will be replaced by a txt file. This is the XML file containing the structure of the Tableau workbook.
-* To view it, type ```code executive_dashboard.txt```.
+In this exercise, we will enahnce the KPI viz with all the formatting. Do the following in the terminal
+```
+git switch kpi # switch back to the kpi branch
+start executive_dashboard.twb
+```
+Then format the KPI viz as shown below
 
-Now your work is on GitHub, ready for collaborators to pull to their local machine and work on it via the comment ```git pull```.
+![KPI](supplementary_images/kpi_with_format.png)
 
-## Exercise 1: Building the KPI Viz
-
-Let's build the first visualization, KPI, and see how the changes are reflected on the XML file.
-
-As a good development practice, we will create a branch to work on this visualization. In the terminal, type `git checkout -b kpi`. You are now on a separate branch called *kpi*. Work on this branch won't affect the main branch.
-
-Now, open the Tableau workbook with the following command, `start executive_dashboard.twb`, and build the visualization as shown below.
-
-![KPI](supplementary_images/kpi_initial_build.png)
-
-We're ready to make our first commit!
+We're ready to make a second commit!
 * Save the workbook
 * Export it as a twbx
 * Close the workbook
 * In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
 * To view it, type ```code executive_dashboard.txt```.
-    * In the popup text file, you'll see some color coding that depicts the changes (i.e., whawasre added, whatwase removed, etc.). If this is hard to see, vscode offers a color highlighting feature to see the diffs even easier -- in the top right corner, look for a symbol called *Open Changes*. 
-    * Once you get used to git bash, another way to see the changes is via the command ```git diff <executive_dashboard.txt>```.
+    * In the popup text file, you'll see some color coding that depicts the changes (i.e., wha was added, what was removed, etc.). If this is hard to see, vscode offers a color highlighting feature to see the diffs even easier -- in the top right corner, look for a symbol called *Open Changes*. 
+    * Once you get used to git, another way to see the changes is via the command ```git diff <executive_dashboard.txt>```.
 
+Notice how the sub-text (SALES, PROFIT, etc.) was capitalized by changing their aliases. Because there are many ways to achieve the same result in Tableau, it’s not immediately obvious how this was done just by looking at the sheet. This highlights another benefit of using version control in Tableau: an analyst can quickly understand how something was accomplished. Such knowledge is essential for successfully executing mid- to large-scale Tableau projects, where tracking and maintaining existing work is often more important than adding new features. In these projects, even small change requests can feel overwhelming because of the sheer number of calculated fields that may have been created. The last thing anyone wants is to add more calculations just to achieve a desired format.
 
-Looking at the diff, I can see *Sheet 1* was removed and *KPIs* sheet was added. I could also see how the *KPIs* sheet was built. For example, the Discount field was in the Columns shelf and the aggregation used on it was average (derivation='Avg'). Going further down the diff, I can only see that some formatting was used on the Discount field. If this looks good, it's time to make a commit.
-
-```
-git add executive_dashboard.twb executive_dashboard.txt
-git commit -m "initial build of the KPIs"
-git push
-```
+Relying on a sheet’s caption feature is clearly inadequate, simply because not everyone remembers to document their work. Personally, I have seen very few Tableau workbooks with good captions. Our minds are often too busy with other tasks!
 
 ## Exercise 3: Finish the Core Visualizations
 
