@@ -71,11 +71,17 @@ As an exercise, we'll build the following dashboard along with doing version con
 
 ![Workout Wednesday 2020 Week 53](supplementary_images/dashboard_final_sketch.png)
 
+Although the dashboard is relatively simple, the idea behind this exercise is not to build it one stroke. Rather we'll break it down into small portions that can be built easily with traceable commits. At a glance, the dashboard is composed of the KPI and some line charts that serve as the core visualization. The following exercises outline the steps to build them:
+1. Exercise 1: Make the First Commit. Build the KPI sheet. No formatting is needed.
+2. Exercise 2: Enahnce the KPI Viz. Improve the KPI sheet with all the formatting as shown in the final dashboard.
+3. Exercise 3: Finish the Core Viz. Build the line charts since they look all similar.
+4. Exercise 4: Complete the Prototype Dashboard. Build the dashboard shown above.
+
 ## Excercise 1: Make the First Commit
 
-For this exercise, we will build the KPI sheet as our first visualization and commit it. No formatting is required.
+In this exercise, we'll build the KPI sheet as our first visualization and commit it. No formatting is required.
 
-As a good development practice, we will create a branch to work on this visualization. In the terminal, type `git checkout -b kpi`. You are now on a separate branch called *kpi*. Work on this branch won't affect the main branch.
+As a good development practice, we will create a branch to work on this visualization. In the terminal, type `git checkout -b kpi`. We are now on a separate branch called *kpi*. Work on this branch won't affect the main branch.
 
 Now, open the Tableau workbook with the following command, `start executive_dashboard.twb`, and build the visualization as shown below.
 
@@ -99,7 +105,7 @@ git merge kpi # an input window might appear, but you can just close it
 
 ## Exercise 2: Enhance the KPI Viz
 
-In this exercise, we will enahnce the KPI viz with all the formatting. Do the following in the terminal
+In this exercise, we will enhance the KPI viz with all the formatting. Do the following in the terminal
 ```
 git switch kpi # switch back to the kpi branch
 start executive_dashboard.twb
@@ -117,23 +123,69 @@ We're ready to make a second commit!
     * In the popup text file, you'll see some color coding that depicts the changes (i.e., wha was added, what was removed, etc.). If this is hard to see, vscode offers a color highlighting feature to see the diffs even easier -- in the top right corner, look for a symbol called *Open Changes*. 
     * Once you get used to git, another way to see the changes is via the command ```git diff <executive_dashboard.txt>```.
 
-Notice how the sub-text (SALES, PROFIT, etc.) was capitalized by changing their aliases. Because there are many ways to achieve the same result in Tableau, it’s not immediately obvious how this was done just by looking at the sheet. This highlights another benefit of using version control in Tableau: an analyst can quickly understand how something was accomplished. Such knowledge is essential for successfully executing mid- to large-scale Tableau projects, where tracking and maintaining existing work is often more important than adding new features. In these projects, even small change requests can feel overwhelming because of the sheer number of calculated fields that may have been created. The last thing anyone wants is to add more calculations just to achieve a desired format.
+<mark>Notice</mark> how the sub-text (SALES, PROFIT, etc.) was capitalized by changing their aliases. Because there are many ways to achieve the same result in Tableau, it’s not immediately obvious how this was done just by looking at the sheet. This highlights another benefit of using version control in Tableau: an analyst can quickly understand how something was accomplished. Such knowledge is essential for successfully executing mid- to large-scale Tableau projects, where tracking and maintaining existing work is just as important as adding new features. In these projects, even small change requests can feel overwhelming because of the sheer number of calculated fields that may have been created. The last thing anyone wants is to add more calculations just to achieve a desired format.
 
 Relying on a sheet’s caption feature is clearly inadequate, simply because not everyone remembers to document their work. Personally, I have seen very few Tableau workbooks with good captions. Our minds are often too busy with other tasks!
 
+Finally, don't forget to commit and merge to the main branch
+```
+git add executive_dashboard.twb executive_dashboard.txt
+git commit -m "enhance KPI sheet with formats"
+git switch main
+git merge kpi # an input window might appear, but you can just close it
+```
+
 ## Exercise 3: Finish the Core Visualizations
 
-In this exercise, we finish the core visualizations and commit them to git. You should have something like this,
-
-![Consumer Chart](supplementary_images/consumer_chart.png)
+In this exercise, we finish the line charts and commit them to git. You should have something like this,
 
 ![Core Visualization](supplementary_images/charts_and_numbers.png)
 
-Follow the process in Exercise 2 to extract an XML-based file from the workbook and view the diffs with the *Open Changes* feature (top right corner). You can see that the information on filtering is encoded in the filter class. For example, the filter (Segment: Consumer) is shown as ```member='&quot;Consumer&quot```.
+### Exercise 3.1: Consumer Chart and Number
+
+![Consumer Chart](supplementary_images/consumer_chart.png)
+![Consumer Chart](supplementary_images/consumer_number.png)
+
+* Save the workbook
+* Export it as a twbx
+* Close the workbook
+* In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
+
+Follow the process in Exercise 2 to extract an XML-based file from the workbook and view the diffs with the *Open Changes* feature (top right corner). You can see that the information on filtering is encoded in the filter class. For example, the filter (Segment: Consumer) is shown as `member='&quot;Consumer&quot`.
 
 Don't forget to commit the changes!
+```
+git add executive_dashboard.twb executive_dashboard.txt
+git commit -m "added the consumer chart and sales number"
+```
 
-## Exercise 4: Complete the Dashboard
+### Exercise 3.2: Corporate Chart and Number
+![Consumer Chart](supplementary_images/corporate_chart.png)
+![Consumer Chart](supplementary_images/corporate_number.png)
+
+* Save the workbook
+* Export it as a twbx
+* Close the workbook
+* In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
+```
+git add executive_dashboard.twb executive_dashboard.txt
+git commit -m "added the corporate chart and sales number"
+```
+
+### Exercise 3.3: Home Office Chart and Number
+![Consumer Chart](supplementary_images/home_office_chart.png)
+![Consumer Chart](supplementary_images/home_office_number.png)
+
+* Save the workbook
+* Export it as a twbx
+* Close the workbook
+* In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
+```
+git add executive_dashboard.twb executive_dashboard.txt
+git commit -m "added the home office chart and sales number"
+```
+
+## Exercise 4: Complete the Prototype Dashboard
 
 In this exercise, we finish the dashboard and commit it to git.
 
