@@ -45,7 +45,7 @@ git clone <https://github.com/huyptruong/tableau-vcs-example >
     * To the left is the EXPLORER dock that shows your project along with files in that it currently has.
     * In the middle is the coding area. Files you open will most likely show up here.
 
-## Step 4: Basics of Doing Version Control with Tableau Workbooks and Prep Flows
+## Step 4: Basics of Doing Version Control with Tableau Workbooks
 
 *Note that this type of version control is not the same as Revision History feature you may have on your Tableau server or Tableau Cloud. Revision history is similar to saving the workbook with different timestamps.*
 
