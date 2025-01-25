@@ -63,9 +63,7 @@ The script **git_tab.sh** in this tutorial automates this process for both Table
 4. Copy/Paste the output in step 2. Press Ctrl + X, then Y (for Yes), and enter.
 5. Back to the terminal and type ```source ~/.bashrc```
 
-After this step, you'll be able to call **git_tab.sh** anywhere.
-
-You're now ready to do version control with Tableau. 
+After this step, you'll be able to call **git_tab.sh** anywhere. You're now ready to do version control with Tableau.
 
 # Tableau Version Control Example
 
@@ -95,6 +93,8 @@ We're ready to make our first commit!
 ```
 git add executive_dashboard.twb executive_dashboard.txt
 git commit -m "KPI sheet initial build"
+git switch main
+git merge kpi # an input window might appear, but you can just close it
 ```
         
 Let's build the first visualization, KPI, and see how the changes are reflected on the XML file. For this exercise, we will stop at 
