@@ -1,5 +1,4 @@
-## Step 1: Set up and Configure your Workflowa
-## Step 1: Set up and Configure your Workflows
+## Step 1: Set up and Configure your Workflow
 
 Please do the following: 
 * Set up a GitHub account
@@ -15,10 +14,10 @@ Do the following only if you want to use command line.
 * For Mac users only:
     * Open vscode
     * Press Ctrl (not Command) + ` (backtick is the key to the left of keyboard 1) to open a terminal.
-    * Install Homebrew, which is a package manager for Mac. Copy/paste this into the terminal `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-    * Install git via the command, `brew install git`
-    * Check if git has been installed via the command, `git --version`
-    * Install Oh My Zsh via the command, `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+    * Install Homebrew, which is a package manager for Mac.
+    * Install git via the command, `brew install git`.
+    * Check if git has been installed via the command, `git --version`.
+    * Install Oh My Zsh via the command.
 
 ## Step 2: Clone This Project
 
@@ -61,20 +60,45 @@ The script **git_tab.sh** in this tutorial automates this process for both Table
 1. Type ```chmod +x git_tab.sh```
 2. Type ```echo "export PATH=\$PATH:$(pwd)"```. Then copy the output. It should look something like this, ```export PATH=$PATH:/c/git_repos/tableau-vcs-example```
 3. Type ```nano ~/.bashrc```. This will open up a text editor window.
-4. Copy/Paste the output in step 2. Press Ctrl + X, then Y (for Yes), and enter.i
+4. Copy/Paste the output in step 2. Press Ctrl + X, then Y (for Yes), and enter.
 5. Back to the terminal and type ```source ~/.bashrc```
 
 After this step, you'll be able to call **git_tab.sh** anywhere.
 
 You're now ready to do version control with Tableau. 
 
-# Tableau Control Example
+# Tableau Version Control Example
 
 As an exercise, we'll build the following dashboard along with doing version control on it. This dashboard comes from the following site, https://workout-wednesday.com/2020w53/
 
 ![Workout Wednesday 2020 Week 53](supplementary_images/dashboard_final_sketch.png)
 
-## Excercise 1: Connect to the Data Source and Execute the First Commit
+## Excercise 1: Make the First Commit
+
+For this exercise, we will build the KPI sheet as our first visualization and commit it. No formatting is required.
+
+As a good development practice, we will create a branch to work on this visualization. In the terminal, type `git checkout -b kpi`. You are now on a separate branch called *kpi*. Work on this branch won't affect the main branch.
+
+Now, open the Tableau workbook with the following command, `start executive_dashboard.twb`, and build the visualization as shown below.
+
+![KPI](supplementary_images/kpi_no_format.png)
+
+We're ready to make our first commit!
+* Save the workbook
+* Export it as a twbx
+* Close the workbook
+* In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
+* To view it, type ```code executive_dashboard.txt```.
+    * The txt file contains the workbook's structure as xml. Ctrl + F to search for the word *KPI* and you can see how the KPI sheet was built.
+    * For instance, the aggregation used on Discount was average, while on Sales was sum (look for the word *derivation*).
+* To commit, type the following to the terminal:
+```
+git add executive_dashboard.twb executive_dashboard.txt
+git commit -m "KPI sheet initial build"
+```
+        
+Let's build the first visualization, KPI, and see how the changes are reflected on the XML file. For this exercise, we will stop at 
+
 
 The dataset *Sample - Superstore.xls* along with a starter Tableau workbook *executive_dashboard.twb" has been provided. Let's use **git_tab.sh** to view the XML structure behind the workbook.
 * Start Tableau, connect to the data source, and drag the table *Orders* into the canvas
@@ -84,33 +108,27 @@ The dataset *Sample - Superstore.xls* along with a starter Tableau workbook *exe
 * In the terminal, type ```git_tab.sh executive_dashboard.twbx```. The twbx workbook will be replaced by a txt file. This is the XML file containing the structure of the Tableau workbook.
 * To view it, type ```code executive_dashboard.txt```.
 
-At this point, it's maybe a good idea to make a commit since the idea behind version control is to make small, commitable changes that can easily be reviewed. Type the following in the terminal.
-```
-git add executive_dashboard.twb executive_dashboard.txt
-git commit -m "initial commit. successfully connected to the data source"
-git push
-```
 Now your work is on GitHub, ready for collaborators to pull to their local machine and work on it via the comment ```git pull```.
 
-## Exercise 2: Build the KPIs Sheet
+## Exercise 1: Building the KPI Viz
 
-Let's build the first visualization, the KPIs, and see how the changes reflected in the XML file. Open Tableau by typing in the command ```start executive_dashboard.twb```
-and build the visualization.
+Let's build the first visualization, KPI, and see how the changes are reflected on the XML file.
 
-![KPI](supplementary_images/kpis.png)
+As a good development practice, we will create a branch to work on this visualization. In the terminal, type `git checkout -b kpi`. You are now on a separate branch called *kpi*. Work on this branch won't affect the main branch.
 
-Here's the KPI sheet that I built. Notice that I purposely ignored formatting the KPIs as I want to demonstrate a real-world scenario that we're still in the prototyping stage and how version control can be leveraged to facilitate this stage. The aggregation on Discount was also (incorrectly!) as SUM.
+Now, open the Tableau workbook with the following command, `start executive_dashboard.twb`, and build the visualization as shown below.
 
-![KPI](supplementary_images/bans_no_format.png)
+![KPI](supplementary_images/kpi_initial_build.png)
 
-Next, let's repeat the process:
-* In the terminal, type ```start executive_dashboard.twb``` to open the workbook.
-* Save the workbook.
-* Also save it as a twbx and close the workbook.
+We're ready to make our first commit!
+* Save the workbook
+* Export it as a twbx
+* Close the workbook
 * In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
 * To view it, type ```code executive_dashboard.txt```.
     * In the popup text file, you'll see some color coding that depicts the changes (i.e., whawasre added, whatwase removed, etc.). If this is hard to see, vscode offers a color highlighting feature to see the diffs even easier -- in the top right corner, look for a symbol called *Open Changes*. 
     * Once you get used to git bash, another way to see the changes is via the command ```git diff <executive_dashboard.txt>```.
+
 
 Looking at the diff, I can see *Sheet 1* was removed and *KPIs* sheet was added. I could also see how the *KPIs* sheet was built. For example, the Discount field was in the Columns shelf and the aggregation used on it was average (derivation='Avg'). Going further down the diff, I can only see that some formatting was used on the Discount field. If this looks good, it's time to make a commit.
 
