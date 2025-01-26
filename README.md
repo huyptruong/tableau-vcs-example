@@ -1,4 +1,3 @@
-
 ## Step 1: Set up and Configure your Workflow
 
 Please do the following: 
@@ -52,10 +51,10 @@ git clone <https://github.com/huyptruong/tableau-vcs-example >
 
 The basic idea of doing version control with Tableau is to convert the workbook or the prep flow to an XML-based text file. Then changes to the Tableau file can be viewed by inspecting the XML file. Given a Tableau workbook called executive_dashboard.twb, below are the steps to extract the XML-based file from it if we wish to do it manually:
 1. Open executive_dashboard.twbx.
-1. Save it as a twbx file, executive_dashboard.twbx.
-2. Rename it to executive_dashboard.zip
-3. Unzip executive_dashboard.zip to a folder called executive_dashboard. Inside this folder, you'll see the workbook, executive_dashboard.twb, along with other folders or files. For example, if your workbook connects to a local data source such as this one (Sample - Superstore.xlsx), you'll see a folder called Data that has this data source in it. However, if your workbook connects to a data source on a server, then there's nothing in this folder.
-4. Rename executive_dashboard.twb to executive_dashboard.txt. This is the XML-based file we'll use to view changes.
+2. Save it as a twbx file, executive_dashboard.twbx.
+3. Rename it to executive_dashboard.zip
+4. Unzip executive_dashboard.zip to a folder called executive_dashboard. Inside this folder, you'll see the workbook, executive_dashboard.twb, along with other folders or files. For example, if your workbook connects to a local data source such as this one (Sample - Superstore.xlsx), you'll see a folder called Data that has this data source in it. However, if your workbook connects to a data source on a server, then there's nothing in this folder.
+5. Rename executive_dashboard.twb to executive_dashboard.txt. This is the XML-based file we'll use to view changes.
 
 The script **git_tab.sh** in this tutorial automates this process for both Tableau workbook and Tableau Prep flows. It clean up redundant files to free up some space. Once you run this script, vscode's EXPLORER window will show a .txt file next to the .twb file. Some basic setup steps are needed to use it effectively. In the terminal, do the following:
 1. Type ```chmod +x git_tab.sh```
@@ -77,6 +76,7 @@ Although the dashboard is relatively simple, the idea behind this exercise is no
 2. Exercise 2: Enahnce the KPI Viz. Improve the KPI sheet with all the formatting as shown in the final dashboard.
 3. Exercise 3: Finish the Core Viz. Build the line charts since they look all similar.
 4. Exercise 4: Complete the Prototype Dashboard. Build the dashboard shown above.
+5. Bonus Exercise: Resolve a Merge Conflict. Simulate a merge conflict on Tableau workbooks and discuss a strategy to resolve it.
 
 ## Excercise 1: Make the First Commit
 
@@ -115,7 +115,7 @@ Then format the KPI viz as shown below
 
 ![KPI](supplementary_images/kpi_with_format.png)
 
-We're ready to make a second commit!
+We're ready to make our second commit!
 * Save the workbook
 * Export it as a twbx
 * Close the workbook
@@ -138,23 +138,18 @@ git merge kpi # an input window might appear, but you can just close it
 
 ## Exercise 3: Finish the Core Visualizations
 
-In this exercise, we finish the line charts and commit them to git. You should have something like this,
-
-![Core Visualization](supplementary_images/charts_and_numbers.png)
+In this exercise, we finish the line charts and commit them to git. Start by creating a branch called *core_viz* and work on this branch, `git checkout core_viz`.
 
 ### Exercise 3.1: Consumer Chart and Number
-
-Start by creating a branch called *core_viz* and work on this branch, `git checkout core_viz`
 
 ![Consumer Chart](supplementary_images/consumer_chart.png)
 ![Consumer Chart](supplementary_images/consumer_number.png)
 
+Follow the process in Exercise 2 to extract an XML-based file from the workbook and view the diffs with the *Open Changes* feature (top right corner). You can see that the information on filtering is encoded in the filter class. For example, the filter (Segment: Consumer) is shown as `member='&quot;Consumer&quot`.
 * Save the workbook
 * Export it as a twbx
 * Close the workbook
 * In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
-
-Follow the process in Exercise 2 to extract an XML-based file from the workbook and view the diffs with the *Open Changes* feature (top right corner). You can see that the information on filtering is encoded in the filter class. For example, the filter (Segment: Consumer) is shown as `member='&quot;Consumer&quot`.
 
 Don't forget to commit the changes!
 ```
@@ -196,17 +191,23 @@ git merge core_viz # an input window might appear, but you can just close it
 
 ## Exercise 4: Complete the Prototype Dashboard
 
-In this exercise, we finish prototyping the dashboard and commit it to git.
+In this exercise, we finish prototyping the dashboard and commit it to git. Start by creating a branch called *dashboard-prototype* and work on this branch, `git checkout dashboard-prototype`
 
 ![Consumer Chart](supplementary_images/dashboard_prototype.png)
 
 Follow the process in Exercise 3 to extract an XML-based file from the workbook and view the diffs with the *Open Changes* feature (top right corner). You can see that information about the dashboard is contained within the <dashboard> tag. Information on the dashboard's configuration is also provided.
-
 * Save the workbook
 * Export it as a twbx
 * Close the workbook
-* In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
+* In the terminal, type `git_tab.sh executive_dashboard.twbx`.
 ```
 git add executive_dashboard.twb executive_dashboard.txt
-git commit -m "added the home office chart and sales number"
+git commit -m "added the prototype dashboard"
 ```
+
+Finally, merge *dashboard-prototype* to main branch
+```
+git switch main
+git merge dashboard-prototype # an input window might appear, but you can just close it
+```
+## Bonus Exercise: Resolve a Merge Conflictcp bonus/merge_conflict_practice.twb ./merge_conflict_practice.twb
