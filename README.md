@@ -1,3 +1,4 @@
+
 ## Step 1: Set up and Configure your Workflow
 
 Please do the following: 
@@ -143,6 +144,8 @@ In this exercise, we finish the line charts and commit them to git. You should h
 
 ### Exercise 3.1: Consumer Chart and Number
 
+Start by creating a branch called *core_viz* and work on this branch, `git checkout core_viz`
+
 ![Consumer Chart](supplementary_images/consumer_chart.png)
 ![Consumer Chart](supplementary_images/consumer_number.png)
 
@@ -185,22 +188,25 @@ git add executive_dashboard.twb executive_dashboard.txt
 git commit -m "added the home office chart and sales number"
 ```
 
+Finally, merge *core_viz* to main branch
+```
+git switch main
+git merge core_viz # an input window might appear, but you can just close it
+```
+
 ## Exercise 4: Complete the Prototype Dashboard
 
-In this exercise, we finish the dashboard and commit it to git.
+In this exercise, we finish prototyping the dashboard and commit it to git.
 
-Follow the process in Exercise 3 to extract an XML-based file from the workbook and view the diffs with the *Open Changes* feature (top right corner). You can see that information about the dashboard is contained within the <dashboard> tag. Information about the dashboard's configuration was also provided.
+![Consumer Chart](supplementary_images/dashboard_prototype.png)
 
-Don't forget to commit the changes!
+Follow the process in Exercise 3 to extract an XML-based file from the workbook and view the diffs with the *Open Changes* feature (top right corner). You can see that information about the dashboard is contained within the <dashboard> tag. Information on the dashboard's configuration is also provided.
 
-## Exercise 5: Modify the KPIs Sheet 
-
-In this exercise, we modify the KPIs sheet by applying lots of format on it. We also change the aggregation for the Discount field from SUM to AVERAGE, which is a more reasonable choice.
-
-Follow the process in Exercise 3 to extract an XML-based file from the workbook and view the diffs. Notice the change in the aggregation from SUM to AVERAGE: SUM is highlighted as red to indicate a removal and AVERAGE is highlighted as green to indicate an addition.
-
-Also notice how the sub-text (SALES, PROFIT, etc.) was capitalized by changing their aliases. Because there are many ways to achieve the same result in Tableau, it’s not immediately obvious how this was done just by looking at the sheet. This highlights another benefit of using version control in Tableau: an analyst can quickly understand how something was accomplished. Such knowledge is essential for successfully executing mid- to large-scale Tableau projects, where tracking and maintaining existing work is often more important than adding new features. In these projects, even small change requests can feel overwhelming because of the sheer number of calculated fields that may have been created. The last thing anyone wants is to add more calculations just to achieve a desired format.
-
-Relying on a sheet’s caption feature is clearly inadequate, simply because not everyone remembers to document their work. Personally, I have seen very few Tableau workbooks with good captions. Our minds are often too busy with other tasks!
-
-Finally, don't forget to commit the changes!
+* Save the workbook
+* Export it as a twbx
+* Close the workbook
+* In the terminal, type ```git_tab.sh executive_dashboard.twbx```.
+```
+git add executive_dashboard.twb executive_dashboard.txt
+git commit -m "added the home office chart and sales number"
+```
