@@ -210,4 +210,11 @@ Finally, merge *dashboard-prototype* to main branch
 git switch main
 git merge dashboard-prototype # an input window might appear, but you can just close it
 ```
-## Bonus Exercise: Resolve a Merge Conflictcp bonus/merge_conflict_practice.twb ./merge_conflict_practice.twb
+## Bonus Exercise: Resolve a Merge Conflict
+
+```
+cp bonus/merge_conflict_practice.twb ./merge_conflict_practice.twb
+```
+git checkout -b dev Alice
+
+git checkout -b dev-Bob

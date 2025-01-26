@@ -26,7 +26,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='Sample - Superstore' name='excel-direct.0cxnvyi1gexx6e1a04zc80phvdmr'>
-            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/git_repos/tableau-vcs-example/Sample - Superstore.xls' interpretationMode='0' password='' server='' validate='no' />
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='Data/tableau-vcs-example/Sample - Superstore.xls' interpretationMode='0' password='' server='' validate='no' />
           </named-connection>
         </named-connections>
         <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='excel-direct.0cxnvyi1gexx6e1a04zc80phvdmr' name='Orders' table='[Orders$]' type='table'>
