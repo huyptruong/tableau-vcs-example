@@ -218,9 +218,11 @@ As you collaborate with teammates on Tableau projects, eventually you will run i
 
 ![Merge Conflict Scenario](supplementary_images/merge_conflict.png)
 
-In this scenario, two developers Alice and Bob both want to build the KPI viz in two different ways. (We won't discuss why they simultaneously build the viz as the purpose of this exercise is raise awareness of merge conflicts only.) They start by splitting off from the main branch and build up the viz from a blank sheet, Sheet 1. Alice, essentially completing Exercise 1, build the viz without any format. Bob, on the other hand, completes the viz with all the required format (Exercise 2). Alice then wants to merge Bob's work into hers but a merge conflict happens because git doesn't know how to combine the two. After a meeting, they agree to finalize the KPI viz by using Bob's work.
+In this scenario, two developers Alice and Bob both want to build the KPI viz in two different ways. (We won't discuss why they simultaneously build the viz as the purpose of this exercise is raise awareness of merge conflicts only.) They start by splitting off from the main branch and build up the viz from a blank sheet, Sheet 1. Alice, essentially completing Exercise 1, builds the viz without any format. Bob, on the other hand, completes the viz with all the required format (Exercise 2). Alice then wants to merge Bob's work into hers but a merge conflict happens because git doesn't know how to combine the two. After a meeting, they agree to finalize the KPI viz by using Bob's work.
 
-Follow the code below to understand a merge conflict.
+Admittedly, this is an artificial scenario. However, merge conflicts do occur all the time, especially when there are multiple developers on the project. The proposed solution in this tutorial is to break down work into small, commitable changes for individuals, so that when a merge conflict happens, the team can come up with a reasonable solution, such as only using the version that the team agrees (i.e., Bob's version).
+
+Follow the code below to understand a merge conflict scenario and how to resolve it.
 ```
 # Copy/Paste the file here
 # It'll serve as the starting point (before the divergence)
