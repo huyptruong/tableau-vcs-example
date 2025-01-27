@@ -1,3 +1,6 @@
+# Introduction
+This tutorial discusses how to do version control with Tableau workbooks and prep flows. This concept is different from revision history on Tableau Server or Tableau Cloud.
+
 ## Step 1: Set up and Configure your Workflow
 
 Please do the following: 
@@ -266,3 +269,36 @@ git checkout --theirs merge_conflict_practice.twb merge_conflict_practice.txt
 git add merge_conflict_practice.twb merge_conflict_practice.txt
 git commit -m "alice likes bob's version since bob's already figured out how to format the KPIs"
 ```
+# Final Thoughts
+
+In this tutorial, we explored techniques for performing version control with Tableau workbooks. I’d like to share additional thoughts in a Q&A format as I personally had these questions when I started this project.
+
+**Q: Why does this workflow look so complex?**
+
+A: It looks complex primarily because that's how Git works. In this tutorial, “doing version control with Tableau” simply means converting your Tableau workbooks (and Prep flows) into text files so that analysts can view any changes. Essentially, all you need to do is run the *git_tab.sh* script. Git then allows you to track changes to those text files and back up your work on a server like GitHub or GitLab. Fundamentally, not much has changed: you still need to talk to stakeholders, think about an appropriate design, and most importantly, use your mouse to create the dashboard.
+
+**Q: So it sounds like I’m learning Git for version control and then apply it to Tableau. Is it really necessary to adapt my workflow this way?**
+
+A: Yes, because it benefits everyone:
+
+<u>How It Benefits the Company</u>: Nowadays, I think it’s in every company’s best interest to have an analytics team [1]. Such a team needs flexibility to address ever-changing business requirements. Depending on a single person who’s highly proficient in Tableau—while all the work is stored on their laptop—is risky. (What happens if that person gets sick or goes on vacation?) It’s better to have work backed up somewhere, well documented, and accessible to a secondary person who knows what’s going on.
+
+Git’s decentralized model makes onboarding a new team member straightforward: just ask them to run `git clone` and they have all the existing work ready for inspection and collaboration. No more passing around workbooks [2]!
+
+Since Git is optimized for collaboration, code documentation, and learning (through features like wikis), you can also document complex features and charts—preventing knowledge loss. Furthermore, from a strategic standpoint, being able to version-control Tableau artifacts means treating them as digital assets that can be mined later for intelligence, offering a competitive edge. Because Tableau workbooks and Prep flows can be extracted into XML files, they could even be fed into a chatbot powered by a Large Language Model (LLM). For instance, I often encounter questions like, “Is the formula that team X uses for this metric the same as the one team Y uses?” Having a chatbot to answer that would be incredibly helpful.
+
+[1] Analytics doesn’t necessary mean to do kick-ass predictive modeling. For many departments, it can simply mean compiling data to generate a comprehensive figure, e.g. sales or profits, for last month and presenting it in a digestible format. Trying to inform our leadership of what has happened is still a big part of an analyst' job.
+
+[2] Here, I’m not arguing whether this can be done via editing a published workbook on Tableau Cloud or Tableau Server. That would be an interesting discussion for a future article.
+
+<u>How it benefits the individual</u>: I've seen a common career progression for data analysts is moving into data engineering or analytics engineering. This path requires not just knowledge of SQL or Python but also the ability to write code collaboratively and communicate with more technically inclined colleagues (e.g., senior data engineers). The MIT online course, The Missing Semester of Your CS Education (https://missing.csail.mit.edu/), highlights that version control with Git is one of the “missing” skills crucial for a successful engineering role. So, adopting Git early in your analyst career will pay off in the long run. Although Tableau’s user-friendly, drag-and-drop approach is fantastic for analysts, it’s often not perceived as “serious” engineering by developers. However, if you’re comfortable with Git, you’ll likely earn their respect. The ability to clone a project, navigate the repository, ask questions, and contribute is a huge career booster.
+
+**Q: Where do I go from here?**
+
+A: After completing this tutorial, start using these principles in your work. For example, if you have a Tableau project, migrate it into a GitHub or GitLab repository rather than letting it sit on your local machine. In your spare time, think about how to break down your work into small, committable changes. If you get stuck with Git, there’s probably a software engineer at your company who would be happy to help—nothing beats silo more than the ability to speak the same technical language. For example, in my own company, I brought up this idea to senior leads and received substantial help while navigating Git because they recognized its value. Prior to this, my work was fairly siloed—people knew who I was but didn’t really know what I did (which, I believe, is a scenario many analysts encounter). Learning Git will help break down those silos.
+
+If you find this approach valuable, consider extending *git_tab.sh* into a true Git extension, so it can run like an actual Git command (e.g., git add) rather than just a script. I’d love to learn how you do that!
+
+Last but not least, keep in mind that doing version control with Tableau workbooks is still relatively new. My team is experimenting with it, and I’m excited to share our implementation journey whenever I can. I also look forward to hearing about your own experiences as well.
+
+--Tutorial written by Huy Truong
