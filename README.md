@@ -261,6 +261,7 @@ git merge dev-Bob # conflict will arise due to the format in Bob's workbook
 git merge --abort
 
 # Tell git to keep the version from Bob
+git switch dev-Alice
 git checkout --theirs merge_conflict_practice.twb merge_conflict_practice.txt
 git add merge_conflict_practice.twb merge_conflict_practice.txt
 git commit -m "alice likes bob's version since bob's already figured out how to format the KPIs"
