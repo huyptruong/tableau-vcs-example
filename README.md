@@ -212,9 +212,54 @@ git merge dashboard-prototype # an input window might appear, but you can just c
 ```
 ## Bonus Exercise: Resolve a Merge Conflict
 
-```
-cp bonus/merge_conflict_practice.twb ./merge_conflict_practice.twb
-```
-git checkout -b dev Alice
+*To simplify the tutorial, this section relies more on code than previous section.*
 
+As you collaborate with teammates on Tableau projects, eventually you will run into *merge conflicts*. As the name suggest, a merge conflict happens when git doesn't know how to merge work together. The diagram below demonstrates such an example
+
+![Merge Conflict Scenario](supplementary_images/merge_conflict.png)
+
+In this scenario, two developers Alice and Bob both want to build the KPI viz in two different ways. (We won't discuss why they simultaneously build the viz as the purpose of this exercise is raise awareness of merge conflicts only.) They start by splitting off from the main branch and build up the viz from a blank sheet, Sheet 1. Alice, essentially completing Exercise 1, build the viz without any format. Bob, on the other hand, completes the viz with all the required format (Exercise 2). Alice then wants to merge Bob's work into hers but a merge conflict happens because git doesn't know how to combine the two. After a meeting, they agree to finalize the KPI viz by using Bob's work.
+
+Follow the code below to understand a merge conflict.
+```
+# Copy/Paste the file here
+# It'll serve as the starting point (before the divergence)
+git switch main
+cp bonus/merge_conflict_practice.twb ./merge_conflict_practice.twb
+
+# Simulate the situation when a person, Alice, takes a branch from main 
+git switch main
+git checkout -b dev-Alice
+
+# Simulate the situation when another person, Bob, takes a branch from main 
+git switch main
 git checkout -b dev-Bob
+
+# Alice creates the KPI viz with no format done and then commits it
+git switch dev-Alice
+start merge_conflict_practice.twb # open this Tableau workbook, modify Sheet 1 so it becomes the KPI sheet with no format (exercise 1), then save it as KPI
+git_tab.sh merge_conflict_practice.twbx
+git add merge_conflict_practice.twb merge_conflict_practice.txt
+git commit -m "KPI initial build by Alice; no format"
+
+# Bob creates the KPI viz with format and then commmits it
+git switch dev-Bob
+start merge_conflict_practice.twb open this Tableau workbook, modify Sheet 1 so it becomes the KPI sheet with the format (exercise 2), then save it as KPI
+git_tab.sh merge_conflict_practice.twbx
+git add merge_conflict_practice.twb merge_conflict_practice.txt
+git commit -m "KPI initial build by Bob; with format"
+
+# Switch to Alice branch and merge Bob's work into it
+# There will be a conflict as git won't know how to merge two files
+# Click on merge_conflict_practice.txt to look at where the conflict happens 
+git switch dev-Alice
+git merge dev-Bob # conflict will arise due to the format in Bob's workbook
+
+# This abort the merge, essentially returns the twb and txt to their stage before the merge
+git merge --abort
+
+# Tell git to keep the version from Bob
+git checkout --theirs merge_conflict_practice.twb merge_conflict_practice.txt
+git add merge_conflict_practice.twb merge_conflict_practice.txt
+git commit -m "alice likes bob's version since bob's already figured out how to format the KPIs"
+```
