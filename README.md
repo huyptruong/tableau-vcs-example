@@ -293,6 +293,22 @@ Since Git is optimized for collaboration, code documentation, and learning (thro
 
 <u>How it benefits the individual</u>: I've seen a common career progression for data analysts is moving into data engineering or analytics engineering. This path requires not just knowledge of SQL or Python but also the ability to write code collaboratively and communicate with more technically inclined colleagues (e.g., senior data engineers). The MIT online course, The Missing Semester of Your CS Education (https://missing.csail.mit.edu/), highlights that version control with Git is one of the “missing” skills crucial for a successful engineering role. So, adopting Git early in your analyst career will pay off in the long run. Although Tableau’s user-friendly, drag-and-drop approach is fantastic for analysts, it’s often not perceived as “serious” engineering by developers. However, if you’re comfortable with Git, you’ll likely earn their respect. The ability to clone a project, navigate the repository, ask questions, and contribute is a huge career booster.
 
+**Q: I noticed that vscode can open the twb file in xml format. Do I still need git_tab.sh to extract text from twb files?**
+
+A: You're correct that vscode can open the twb file in xml format and thus, there's no need to use *git_tab.sh* to convert twb into txt. However, there are three reasons against this practice:
+
+1. It's dangerous to view the twb file directly. You can accidentally add something while browsing it, which will corrupt the workbook without realizing it. It's much safer to view the accompanied text file.
+
+2. It's very hard to read the text in the twb file as there are too many colors. Once the twb file is open, vscode recognizes the xml format due to the xml declaration at the beginning of the file. Then all the text are colorized differently depending on the its function (e.g. elements, tags, etc.), which really hurts the eyes. On the other hand, the txt file only has one color. This facilitates knowledge discovery as oftentimes, we're more interested in learning about the changes between different versions (aka, the diffs). Having one-color text makes it really easy to spot the diffs.
+
+3. It's not possible to view a Tableau Prep flow directly. Unlike twb files, tfl files are binary. Thus, if you try to peek into it directly, you'll see a bunch of junk. As of this writing 1/30/2025, the only way to view the tfl files in a human-readable format is by extracting a txt file.
+
+Thus, the purpose of *git_tab.sh* is to minimize the chance that you'll accidentally corrupt the twb files when viewing it directly, facilitate knowledge discovery, and allow a common method to quickly understand the diffs between versions for both twb and tfl files.
+
+**Q: There are too many things to read in the extracted xml files. Is there a quicker way to read it?**
+
+A: Yes. Use chatgpt(!) -- just dump it there. Chatgpt does a fine job at summarizing the text, telling you exactly what you need to know.
+
 **Q: Where do I go from here?**
 
 A: After completing this tutorial, start using these principles in your work. For example, if you have a Tableau project, migrate it into a GitHub or GitLab repository rather than letting it sit on your local machine. In your spare time, think about how to break down your work into small, committable changes. If you get stuck with Git, there’s probably a software engineer at your company who would be happy to help—nothing beats silo more than the ability to speak the same technical language. For example, in my own company, I brought up this idea to senior leads and received substantial help while navigating Git because they recognized its value. Prior to this, my work was fairly siloed—people knew who I was but didn’t really know what I did (which, I believe, is a scenario many analysts encounter). Learning Git will help break down those silos.
